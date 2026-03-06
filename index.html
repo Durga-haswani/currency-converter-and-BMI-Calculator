@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Currency Converter & BMI Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+
+  <header>
+    <div class="logo"><i class="fa-solid fa-bolt"></i> SmartCalc</div>
+    <nav>
+      <button class="tab-btn active" data-tab="currency">
+        <i class="fa-solid fa-coins"></i> Currency
+      </button>
+      <button class="tab-btn" data-tab="bmi">
+        <i class="fa-solid fa-weight-scale"></i> BMI
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+            <!-- CURRENCY CONVERTER -->
+
+    <section id="currency" class="tab-section active">
+      <div class="card">
+        <div class="card-header">
+          <h1>Currency<br/><span class="accent">Converter</span></h1>
+          <p class="subtitle">Real-time exchange rates</p>
+        </div>
+
+        <div class="rate-badge" id="rateBadge">
+          <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          <span id="liveRate">Enter amount to see rate</span>
+        </div>
+
+        <div class="input-group">
+          <label>Amount</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-dollar-sign input-icon"></i>
+            <input type="number" id="amount" placeholder="0.00" min="0"/>
+          </div>
+        </div>
+
+        <div class="currency-row">
+          <div class="select-group">
+            <label>From</label>
+            <div class="select-wrap">
+              <select id="fromCurrency"></select>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+          </div>
+
+          <button class="swap-btn" id="swapBtn" title="Swap currencies">
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          </button>
+
+          <div class="select-group">
+            <label>To</label>
+            <div class="select-wrap">
+              <select id="toCurrency"></select>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="convertBtn">
+          <i class="fa-solid fa-calculator"></i> Convert Now
+        </button>
+
+        <div class="result-box" id="currencyResult">
+          <div class="result-label">Converted Amount</div>
+          <div class="result-value" id="convertedValue">—</div>
+          <div class="result-note" id="conversionNote"></div>
+        </div>
+
+        <div class="popular-rates">
+          <p class="section-label">Popular Pairs (vs USD)</p>
+          <div class="rates-grid" id="popularRates"></div>
+        </div>
+      </div>
+    </section>
+
+               <!--  BMI CALCULATOR  -->
+
+    <section id="bmi" class="tab-section">
+      <div class="card">
+        <div class="card-header">
+          <h1>BMI<br/><span class="accent">Calculator</span></h1>
+          <p class="subtitle">Body Mass Index checker</p>
+        </div>
+
+        <div class="unit-toggle">
+          <button class="unit-btn active" data-unit="metric">Metric (kg/ft)</button>
+          <button class="unit-btn" data-unit="imperial">Imperial (lb/in)</button>
+        </div>
+
+        <div class="bmi-inputs" id="bmiInputs">
+          <div class="input-group">
+            <label>Weight <span id="weightUnit">(kg)</span></label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-weight-hanging input-icon"></i>
+              <input type="number" id="weight" placeholder="70" min="0"/>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Height <span id="heightUnit">(ft)</span></label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-ruler-vertical input-icon"></i>
+              <input type="number" id="height" placeholder="5.5" min="0"/>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Age <span>(optional)</span></label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-calendar input-icon"></i>
+              <input type="number" id="age" placeholder="25" min="1" max="120"/>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Gender <span>(optional)</span></label>
+            <div class="select-wrap">
+              <select id="gender">
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="calcBMI">
+          <i class="fa-solid fa-calculator"></i> Calculate BMI
+        </button>
+
+        <div class="result-box bmi-result-box" id="bmiResult">
+          <div class="bmi-score-wrap">
+            <div class="bmi-score" id="bmiScore">—</div>
+            <div class="bmi-label" id="bmiLabel">Your BMI</div>
+          </div>
+          <div class="bmi-category" id="bmiCategory"></div>
+          <div class="bmi-bar-wrap">
+            <div class="bmi-bar">
+              <div class="bmi-fill" id="bmiFill"></div>
+              <div class="bmi-pointer" id="bmiPointer"></div>
+            </div>
+            <div class="bmi-scale-labels">
+              <span>Under</span><span>Normal</span><span>Over</span><span>Obese</span>
+            </div>
+          </div>
+          <div class="bmi-tip" id="bmiTip"></div>
+        </div>
+
+        <div class="bmi-table">
+          <p class="section-label">BMI Scale Reference</p>
+          <div class="bmi-rows">
+            <div class="bmi-row"><span class="dot underweight"></span>Underweight<span>&lt; >35</span></div>
+            <div class="bmi-row"><span class="dot normal"></span>Normal weight<span>40 – 50</span></div>
+            <div class="bmi-row"><span class="dot overweight"></span>Overweight<span>55 – 65</span></div>
+            <div class="bmi-row"><span class="dot obese"></span>Obese<span>≥ 66</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Built with using HTML · CSS · JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
